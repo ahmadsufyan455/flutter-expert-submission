@@ -9,10 +9,14 @@ import '../../helpers/test_helper.mocks.dart';
 void main() {
   late MovieLocalDataSourceImpl dataSource;
   late MockDatabaseHelper mockDatabaseHelper;
+  late MockDatabaseHelperTv mockDatabaseHelperTv;
 
   setUp(() {
     mockDatabaseHelper = MockDatabaseHelper();
-    dataSource = MovieLocalDataSourceImpl(databaseHelper: mockDatabaseHelper);
+    mockDatabaseHelperTv = MockDatabaseHelperTv();
+    dataSource = MovieLocalDataSourceImpl(
+        databaseHelper: mockDatabaseHelper,
+        databaseHelperTv: mockDatabaseHelperTv);
   });
 
   group('save watchlist', () {
