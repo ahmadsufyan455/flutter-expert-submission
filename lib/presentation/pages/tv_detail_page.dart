@@ -177,6 +177,63 @@ class DetailContent extends StatelessWidget {
                             ),
                             SizedBox(height: 16),
                             Text(
+                              'Current Season',
+                              style: kHeading6,
+                            ),
+                            SizedBox(height: 6),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(16)),
+                                  child: CachedNetworkImage(
+                                    width: 120,
+                                    imageUrl:
+                                        '$BASE_IMAGE_URL${tv.seasons.last.posterPath}',
+                                    placeholder: (context, url) => Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
+                                  ),
+                                ),
+                                SizedBox(width: 10),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        tv.seasons.last.name,
+                                        style: kSubtitle,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            Icons.star,
+                                            color: kMikadoYellow,
+                                            size: 24,
+                                          ),
+                                          SizedBox(width: 5),
+                                          Text(
+                                              '${tv.seasons.last.voteAverage}'),
+                                          SizedBox(width: 5),
+                                          Text('•'),
+                                          SizedBox(width: 5),
+                                          Text(
+                                              '${tv.seasons.last.episodeCount} Episodes'),
+                                        ],
+                                      ),
+                                      Text(tv.seasons.last.overview),
+                                      SizedBox(height: 6),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 16),
+                            Text(
                               'Recommendations',
                               style: kHeading6,
                             ),
