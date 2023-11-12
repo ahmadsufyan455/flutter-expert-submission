@@ -322,6 +322,97 @@ class MockMovieRepository extends _i1.Mock implements _i6.MovieRepository {
           ),
         )),
       ) as _i7.Future<_i2.Either<_i8.Failure, _i12.TvDetail>>);
+  @override
+  _i7.Future<_i2.Either<_i8.Failure, List<_i11.Tv>>> getTvRecommendations(
+          int? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTvRecommendations,
+          [id],
+        ),
+        returnValue: _i7.Future<_i2.Either<_i8.Failure, List<_i11.Tv>>>.value(
+            _FakeEither_0<_i8.Failure, List<_i11.Tv>>(
+          this,
+          Invocation.method(
+            #getTvRecommendations,
+            [id],
+          ),
+        )),
+      ) as _i7.Future<_i2.Either<_i8.Failure, List<_i11.Tv>>>);
+  @override
+  _i7.Future<_i2.Either<_i8.Failure, List<_i11.Tv>>> searchTv(String? query) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #searchTv,
+          [query],
+        ),
+        returnValue: _i7.Future<_i2.Either<_i8.Failure, List<_i11.Tv>>>.value(
+            _FakeEither_0<_i8.Failure, List<_i11.Tv>>(
+          this,
+          Invocation.method(
+            #searchTv,
+            [query],
+          ),
+        )),
+      ) as _i7.Future<_i2.Either<_i8.Failure, List<_i11.Tv>>>);
+  @override
+  _i7.Future<_i2.Either<_i8.Failure, String>> saveWatchlistTv(
+          _i12.TvDetail? tv) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #saveWatchlistTv,
+          [tv],
+        ),
+        returnValue: _i7.Future<_i2.Either<_i8.Failure, String>>.value(
+            _FakeEither_0<_i8.Failure, String>(
+          this,
+          Invocation.method(
+            #saveWatchlistTv,
+            [tv],
+          ),
+        )),
+      ) as _i7.Future<_i2.Either<_i8.Failure, String>>);
+  @override
+  _i7.Future<_i2.Either<_i8.Failure, String>> removeWatchlistTv(
+          _i12.TvDetail? tv) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #removeWatchlistTv,
+          [tv],
+        ),
+        returnValue: _i7.Future<_i2.Either<_i8.Failure, String>>.value(
+            _FakeEither_0<_i8.Failure, String>(
+          this,
+          Invocation.method(
+            #removeWatchlistTv,
+            [tv],
+          ),
+        )),
+      ) as _i7.Future<_i2.Either<_i8.Failure, String>>);
+  @override
+  _i7.Future<bool> isAddedToWatchlistTv(int? id) => (super.noSuchMethod(
+        Invocation.method(
+          #isAddedToWatchlistTv,
+          [id],
+        ),
+        returnValue: _i7.Future<bool>.value(false),
+      ) as _i7.Future<bool>);
+  @override
+  _i7.Future<_i2.Either<_i8.Failure, List<_i11.Tv>>> getWatchlistTv() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getWatchlistTv,
+          [],
+        ),
+        returnValue: _i7.Future<_i2.Either<_i8.Failure, List<_i11.Tv>>>.value(
+            _FakeEither_0<_i8.Failure, List<_i11.Tv>>(
+          this,
+          Invocation.method(
+            #getWatchlistTv,
+            [],
+          ),
+        )),
+      ) as _i7.Future<_i2.Either<_i8.Failure, List<_i11.Tv>>>);
 }
 
 /// A class which mocks [MovieRemoteDataSource].
@@ -435,6 +526,23 @@ class MockMovieRemoteDataSource extends _i1.Mock
           ),
         )),
       ) as _i7.Future<_i4.TvDetailModel>);
+  @override
+  _i7.Future<List<_i15.TvModel>> getTvRecommendations(int? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTvRecommendations,
+          [id],
+        ),
+        returnValue: _i7.Future<List<_i15.TvModel>>.value(<_i15.TvModel>[]),
+      ) as _i7.Future<List<_i15.TvModel>>);
+  @override
+  _i7.Future<List<_i15.TvModel>> searchTv(String? query) => (super.noSuchMethod(
+        Invocation.method(
+          #searchTv,
+          [query],
+        ),
+        returnValue: _i7.Future<List<_i15.TvModel>>.value(<_i15.TvModel>[]),
+      ) as _i7.Future<List<_i15.TvModel>>);
 }
 
 /// A class which mocks [MovieLocalDataSource].

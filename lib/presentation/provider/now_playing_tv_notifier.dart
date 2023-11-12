@@ -19,7 +19,7 @@ class NowPlayingTvNotifier extends ChangeNotifier {
   String get message => _message;
 
   Future<void> fetchNowPlayingTvShows() async {
-    _state = RequestState.Loaded;
+    _state = RequestState.Loading;
     notifyListeners();
 
     final result = await getNowPlayingTv.execute();
