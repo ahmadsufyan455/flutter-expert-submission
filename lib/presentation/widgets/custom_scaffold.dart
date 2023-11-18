@@ -1,7 +1,7 @@
+import 'package:about/about.dart';
 import 'package:ditonton/presentation/pages/home_tv_page.dart';
 import 'package:flutter/material.dart';
 
-import '../pages/about_page.dart';
 import '../pages/search_page.dart';
 import '../pages/watchlist_movies_page.dart';
 
