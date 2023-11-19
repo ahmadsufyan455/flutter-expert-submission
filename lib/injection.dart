@@ -41,6 +41,9 @@ import 'package:search/search.dart';
 final locator = GetIt.instance;
 
 void init() {
+  // bloc
+  locator.registerFactory(() => SearchMovieBloc(locator()));
+  locator.registerFactory(() => SearchTvBloc(locator()));
   // provider
   locator.registerFactory(
     () => MovieListNotifier(
@@ -72,16 +75,6 @@ void init() {
       getWatchListTvStatus: locator(),
       saveWatchListTv: locator(),
       removeWatchListTv: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => MovieSearchNotifier(
-      searchMovies: locator(),
-    ),
-  );
-  locator.registerFactory(
-    () => TvSearchNotifier(
-      searchTv: locator(),
     ),
   );
   locator.registerFactory(
