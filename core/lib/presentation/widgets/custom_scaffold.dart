@@ -1,9 +1,6 @@
 import 'package:core/utils/routes.dart';
 import 'package:flutter/material.dart';
 
-import '../pages/home_tv_page.dart';
-import '../pages/watchlist_movies_page.dart';
-
 class CustomScaffold extends StatelessWidget {
   const CustomScaffold(
       {super.key, required this.pageTitle, required this.body});
@@ -50,14 +47,14 @@ class CustomScaffold extends StatelessWidget {
               leading: const Icon(Icons.tv),
               title: const Text('TV Shows'),
               onTap: () {
-                Navigator.pushReplacementNamed(context, HomeTvPage.routeName);
+                Navigator.pushReplacementNamed(context, homeTvRoute);
               },
             ),
             ListTile(
               leading: const Icon(Icons.save_alt),
               title: const Text('Watchlist'),
               onTap: () {
-                Navigator.pushNamed(context, WatchlistMoviesPage.routeName);
+                Navigator.pushNamed(context, watchlistMovieRoute);
               },
             ),
             ListTile(

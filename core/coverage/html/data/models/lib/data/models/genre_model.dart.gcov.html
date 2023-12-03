@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Test Date:</td>
-            <td class="headerValue">2023-11-18 14:22:54</td>
+            <td class="headerValue">2023-12-03 14:38:39</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntryHi">-</td>
@@ -65,7 +65,7 @@
 <span id="L3"><span class="lineNum">       3</span>              : import '../../domain/entities/genre.dart';</span>
 <span id="L4"><span class="lineNum">       4</span>              : </span>
 <span id="L5"><span class="lineNum">       5</span>              : class GenreModel extends Equatable {</span>
-<span id="L6"><span class="lineNum">       6</span> <span class="tlaGNC tlaBgGNC">           2 :   GenreModel({</span></span>
+<span id="L6"><span class="lineNum">       6</span> <span class="tlaGNC tlaBgGNC">           2 :   const GenreModel({</span></span>
 <span id="L7"><span class="lineNum">       7</span>              :     required this.id,</span>
 <span id="L8"><span class="lineNum">       8</span>              :     required this.name,</span>
 <span id="L9"><span class="lineNum">       9</span>              :   });</span>
@@ -79,7 +79,7 @@
 <span id="L17"><span class="lineNum">      17</span>              :       );</span>
 <span id="L18"><span class="lineNum">      18</span>              : </span>
 <span id="L19"><span class="lineNum">      19</span> <span class="tlaGNC">           1 :   Genre toEntity() {</span></span>
-<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">           3 :     return Genre(id: this.id, name: this.name);</span></span>
+<span id="L20"><span class="lineNum">      20</span> <span class="tlaGNC">           3 :     return Genre(id: id, name: name);</span></span>
 <span id="L21"><span class="lineNum">      21</span>              :   }</span>
 <span id="L22"><span class="lineNum">      22</span>              : </span>
 <span id="L23"><span class="lineNum">      23</span> <span class="tlaGNC">           1 :   @override</span></span>
