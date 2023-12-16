@@ -1,4 +1,4 @@
-import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 import 'package:get_it/get_it.dart';
 import 'package:search/search.dart';
 import 'package:movie/movie.dart';
@@ -80,5 +80,5 @@ void init() {
   locator.registerLazySingleton<DatabaseHelperTv>(() => DatabaseHelperTv());
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton(() => IOClient());
 }
