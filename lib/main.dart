@@ -1,5 +1,7 @@
 import 'package:about/about.dart';
 import 'package:core/core.dart';
+import 'package:ditonton/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:http/io_client.dart';
 import 'package:core/utils/ssl_pinning.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +15,9 @@ import 'package:ditonton/injection.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   IOClient ioClient = await SslPinning.ioClient;
   di.init(ioClient);
   runApp(MyApp());
