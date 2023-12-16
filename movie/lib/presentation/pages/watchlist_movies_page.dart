@@ -1,7 +1,8 @@
+// coverage:ignore-file
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tv/tv.dart';
-import '../provider/watchlist_movie_notifier.dart';
 import 'package:core/core.dart';
 import 'package:movie/movie.dart';
 
@@ -21,12 +22,9 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    Future.microtask(() =>
-        Provider.of<WatchlistMovieNotifier>(context, listen: false)
-            .fetchWatchlistMovies());
-    Future.microtask(() =>
-        Provider.of<WatchListTvNotifier>(context, listen: false)
-            .fetchWatchlistTv());
+    BlocProvider.of<TvWatchlistBloc>(context).add(const LoadWatchListTv());
+    BlocProvider.of<MovieWatchlistBloc>(context)
+        .add(const LoadWatchListMovie());
   }
 
   @override
@@ -37,9 +35,9 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
 
   @override
   void didPopNext() {
-    Provider.of<WatchlistMovieNotifier>(context, listen: false)
-        .fetchWatchlistMovies();
-    Provider.of<WatchListTvNotifier>(context, listen: false).fetchWatchlistTv();
+    BlocProvider.of<MovieWatchlistBloc>(context)
+        .add(const LoadWatchListMovie());
+    BlocProvider.of<TvWatchlistBloc>(context).add(const LoadWatchListTv());
   }
 
   @override
@@ -60,51 +58,53 @@ class _WatchlistMoviesPageState extends State<WatchlistMoviesPage>
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Consumer<WatchlistMovieNotifier>(
-              builder: (context, data, child) {
-                if (data.watchlistState == RequestState.loading) {
+            child: BlocBuilder<MovieWatchlistBloc, MovieWatchlistState>(
+              builder: (context, state) {
+                if (state is MovieWatchListLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (data.watchlistState == RequestState.loaded) {
+                } else if (state is MovieWatchListSuccess) {
                   return ListView.builder(
                     itemBuilder: (context, index) {
-                      final movie = data.watchlistMovies[index];
+                      final movie = state.results[index];
                       return MovieCard(movie);
                     },
-                    itemCount: data.watchlistMovies.length,
+                    itemCount: state.results.length,
                   );
-                } else {
+                } else if (state is MovieWatchListError) {
                   return Center(
                     key: const Key('error_message'),
-                    child: Text(data.message),
+                    child: Text(state.message),
                   );
                 }
+                return const SizedBox();
               },
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Consumer<WatchListTvNotifier>(
-              builder: (context, data, child) {
-                if (data.watchlistState == RequestState.loading) {
+            child: BlocBuilder<TvWatchlistBloc, TvWatchlistState>(
+              builder: (context, state) {
+                if (state is TvWatchListLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (data.watchlistState == RequestState.loaded) {
+                } else if (state is TvWatchListSuccess) {
                   return ListView.builder(
                     itemBuilder: (context, index) {
-                      final tv = data.watchlistTv[index];
+                      final tv = state.results[index];
                       return TvCard(tv);
                     },
-                    itemCount: data.watchlistTv.length,
+                    itemCount: state.results.length,
                   );
-                } else {
+                } else if (state is TvWatchListError) {
                   return Center(
                     key: const Key('error_message'),
-                    child: Text(data.message),
+                    child: Text(state.message),
                   );
                 }
+                return const SizedBox();
               },
             ),
           ),

@@ -1,8 +1,9 @@
+// coverage:ignore-file
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:core/core.dart';
 import 'package:movie/movie.dart';
-import '../provider/now_playing_movies_notifier.dart';
 
 class NowPlayingMoviesPage extends StatefulWidget {
   static const routeName = '/now-playing-movie';
@@ -17,39 +18,38 @@ class _NowPlayingMoviesPageState extends State<NowPlayingMoviesPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<NowPlayingMoviesNotifier>(context, listen: false)
-            .fetchNowPlayingMovies());
+    BlocProvider.of<NowPlayingMovieBloc>(context).add(LoadNowPlayingMovie());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Popular Movies'),
+        title: const Text('Now Playing Movies'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<NowPlayingMoviesNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.loading) {
+        child: BlocBuilder<NowPlayingMovieBloc, NowPlayingMovieState>(
+          builder: (context, state) {
+            if (state is NowPlayingMovieLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.loaded) {
+            } else if (state is NowPlayingMovieSuccess) {
               return ListView.builder(
                 itemBuilder: (context, index) {
-                  final movie = data.movies[index];
+                  final movie = state.results[index];
                   return MovieCard(movie);
                 },
-                itemCount: data.movies.length,
+                itemCount: state.results.length,
               );
-            } else {
+            } else if (state is NowPlayingMovieError) {
               return Center(
                 key: const Key('error_message'),
-                child: Text(data.message),
+                child: Text(state.message),
               );
             }
+            return const SizedBox();
           },
         ),
       ),
