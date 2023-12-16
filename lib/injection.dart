@@ -7,7 +7,7 @@ import 'package:core/core.dart';
 
 final locator = GetIt.instance;
 
-void init() {
+void init(IOClient ioClient) {
   // bloc
   locator.registerFactory(() => SearchMovieBloc(locator()));
   locator.registerFactory(() => SearchTvBloc(locator()));
@@ -80,5 +80,5 @@ void init() {
   locator.registerLazySingleton<DatabaseHelperTv>(() => DatabaseHelperTv());
 
   // external
-  locator.registerLazySingleton(() => IOClient());
+  locator.registerLazySingleton<IOClient>(() => ioClient);
 }

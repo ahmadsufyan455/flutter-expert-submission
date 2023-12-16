@@ -1,5 +1,7 @@
 import 'package:about/about.dart';
 import 'package:core/core.dart';
+import 'package:http/io_client.dart';
+import 'package:core/utils/ssl_pinning.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/search.dart';
 import 'package:movie/movie.dart';
@@ -9,8 +11,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 
-void main() {
-  di.init();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  IOClient ioClient = await SslPinning.ioClient;
+  di.init(ioClient);
   runApp(MyApp());
 }
 
